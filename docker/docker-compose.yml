@@ -1,0 +1,8 @@
+version: '2.4'
+services: 
+  simpleubuntu:
+    container_name: mycontainer
+    command: ls -lah
+    build:
+      context: .
+      dockerfile: Dockerfile
