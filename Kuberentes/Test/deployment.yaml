@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-deployment
+spec:
+  selector:
+    matchLabels:
+      app: go
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: go
+    spec:
+      containers:
+      - name: testimg
+        image: testimg
+        ports:
+        - containerPort: 32100
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: go-service
+spec:
+  selector:
+    app: go
+  ports:
+  - protocol: TCP
+    port: 32100
+    targetPort: 32100
+  type: NodePort
